@@ -2,6 +2,6 @@
 
 def call(Map config) {
     node {
-        echo 'Executing build of type ${config.type}'
+        echo "executing build of type ${config.type}"
     }
 }

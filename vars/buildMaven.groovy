@@ -2,6 +2,6 @@
 
 def call(Map config) {
     node {
-        echo 'doing a Maven build on build ${config.name}'
+        echo "doing a Maven build on build ${config.name}"
     }
 }
