@@ -23,9 +23,8 @@ pipeline {
 
         stage('Dependency Check') {
             steps {
-                dependencyCheck
+                dependencyCheck()
             }
-
         }
 
         stage('Create Image') {
