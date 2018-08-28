@@ -1,5 +1,8 @@
 //vars/buildGradle.groovy
 
 def call(Map config) {
-    echo 'doing a Gradle build'
+    node{
+        echo 'doing a Gradle build'
+    }
+
 }
