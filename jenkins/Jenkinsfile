@@ -16,7 +16,8 @@ pipeline {
 
         stage('Java Build') {
             steps{
-                buildJava name: "${JOB_NAME}"
+                buildJava name: "${JOB_NAME}",
+                          type: 'Gradle'
             }
 
         }
