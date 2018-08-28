@@ -8,40 +8,41 @@ def call(Map config) {
     {
         if (config.type.toLowerCase() == 'maven')
         {
-            mavenBuild()
+            mavenBuild("${config.name}")
         }
         if (config.type.toLowerCase() == 'gradle')
         {
-            gradleBuild()
+            gradleBuild("${config.name}")
         }
     }
+    else{
+        // else try and work it out
+        def isMaven = fileExists 'pom.xml'
+        def isGradle = fileExists 'build.gradle'
 
-    // else try and work it out
-    def isMaven = fileExists 'pom.xml'
-    def isGradle = fileExists 'build.gradle'
+        if (isMaven && !isGradle)
+        {
+            mavenBuild("${config.name}")
+        }
 
-    if (isMaven && !isGradle)
-    {
-        mavenBuild()
-    }
+        else if (!isMaven && isGradle)
+        {
+            gradleBuild("${config.name}")
+        }
 
-    else if (!isMaven && isGradle)
-    {
-        gradleBuild()
-    }
-
-    else {
-        error "Build failed due to indeterminate build strategy"
+        else {
+            error "Build failed due to indeterminate build strategy"
+        }
     }
 }
 
 
 // Method to support Maven build steps
 def mavenBuild(String name) {
-    echo "starting maven build for project ${JOB_NAME}"
+    echo "starting maven build for project ${name}"
 }
 
 // method to support Gradle build steps
 def gradleBuild(String name) {
-    echo "starting gradle build for project ${JOB_NAME}"
+    echo "starting gradle build for project ${name}"
 }
