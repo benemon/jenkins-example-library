@@ -12,6 +12,10 @@ pipeline {
         label 'maven'
     }
 
+    parameters {
+        string(defaultValue: 'https://quay.io/', description: 'Location of the staging registry between OCP environments', name: 'STAGING_REGISTRY')
+    }
+
     stages {
 
         stage('Java Build') {
@@ -31,6 +35,12 @@ pipeline {
         stage('Create Image') {
             steps{
                 createImage type: 'openshift-binary'
+            }
+        }
+
+        stage('Publishing Image') {
+            steps{
+                publishImage externalRegistry: "${STAGING_REGISTRY}"
             }
         }
     }
