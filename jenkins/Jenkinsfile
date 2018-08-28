@@ -14,7 +14,7 @@ pipeline {
 
     stages {
 
-        stage('Maven Build') {
+        stage('Java Build') {
             steps{
                 buildMaven name: "${JOB_NAME}"
             }
