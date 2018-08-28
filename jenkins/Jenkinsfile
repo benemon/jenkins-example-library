@@ -15,15 +15,23 @@ pipeline {
     stages {
 
         stage('Maven Build') {
-            buildMaven name: 'example-pipeline'
+            steps{
+                buildMaven name: 'example-pipeline'
+            }
+
         }
 
         stage('Dependency Check') {
-            dependencyCheck
+            steps {
+                dependencyCheck
+            }
+
         }
 
         stage('Create Image') {
-            createImage type: 'openshift-binary'
+            steps{
+                createImage type: 'openshift-binary'
+            }
         }
     }
 }
