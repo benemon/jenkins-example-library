@@ -1,0 +1,29 @@
+@Library('reference-steps') _
+
+pipeline {
+
+    // logrotate on builds so we don't fill up our history 
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
+    }
+
+    // it's often easiest to define a global agent for the entire build
+    agent {
+        label 'maven'
+    }
+
+    stages {
+
+        stage('Maven Build') {
+            buildMaven name: 'example-pipeline'
+        }
+
+        stage('Dependency Check') {
+            dependencyCheck
+        }
+
+        stage('Create Image') {
+            createImage type: 'openshift-binary'
+        }
+    }
+}
