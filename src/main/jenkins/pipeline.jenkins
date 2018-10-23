@@ -39,7 +39,7 @@ pipeline {
             }
         }
 
-        stage('Publishing Image') {
+        stage('Publish Image') {
             steps{
                 publishImage externalRegistry: "${STAGING_REGISTRY}"
             }

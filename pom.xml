@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -9,19 +9,56 @@
     <version>1.0.0-SNAPSHOT</version>
 
 
-    <name>Jenkins Example Library/name>
+    <name>Jenkins Example Library</name>
 
 
     <dependencies>
+
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>2.4.11</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.lesfurets</groupId>
+            <artifactId>jenkins-pipeline-unit</artifactId>
+            <version>2.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.9.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cloudbees</groupId>
+            <artifactId>groovy-cps</artifactId>
+            <version>1.24</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
-        <sourceDirectory>src/main/groovy</sourceDirectory>
+        <sourceDirectory>src/main</sourceDirectory>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -42,12 +79,14 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
             <plugin>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-eclipse-compiler</artifactId>
                 <version>2.9.2-01</version>
                 <extensions>true</extensions>
             </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -61,7 +100,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>src/main/groovy</source>
+                                <source>src/main</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -73,7 +112,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>test/main/groovy</source>
+                                <source>src/test/groovy</source>
                             </sources>
                         </configuration>
                     </execution>

@@ -1,0 +1,5 @@
+@Library('reference-steps') _
+
+javaPipeline jobName: ${JOB_NAME}
+             buildStrategy: 'binary',
+             stagingRegistry: 'https://quay.io/'
