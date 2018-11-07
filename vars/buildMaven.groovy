@@ -7,5 +7,5 @@ def call(Map config) {
     echo 'executing maven build of ${pom.artifactId}'
     echo '=========================================='
     
-    sh 'mvn clean package ${config.mavenOpts}; mkdir -p ${config.artifactDir};cp target/*.jar ${config.artifactDir}/'
+    sh "mvn clean package ${config.mavenOpts}; mkdir -p ${config.artifactDir};cp target/*.jar ${config.artifactDir}/"
 }
