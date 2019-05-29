@@ -8,15 +8,15 @@ def call(Map config) {
 
         // it's often easiest to define a global agent for the entire build
         agent {
-            label 'config.agent'
+            label "${config.agent}"
         }
 
         stages {
 
             stage('Java Build') {
                 steps{
-                    buildJava name: "config.jobName",
-                              type: "config.jobType"
+                    buildJava name: "${config.jobName}",
+                              type: "${config.jobType}"
                 }
 
             }
@@ -29,13 +29,13 @@ def call(Map config) {
 
             stage('Create Image') {
                 steps{
-                    createImage type: "config.buildStrategy"
+                    createImage type: "${config.buildStrategy}"
                 }
             }
 
             stage('Publish Image') {
                 steps{
-                    publishImage externalRegistry: "config.stagingRegistry"
+                    publishImage externalRegistry: "${config.stagingRegistry}"
                 }
             }
         }
