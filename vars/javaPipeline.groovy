@@ -16,7 +16,7 @@ def call(Map config) {
             stage('Java Build') {
                 steps{
                     buildJava name: "config.jobName",
-                            type: 'Gradle'
+                              type: "config.jobType"
                 }
 
             }
